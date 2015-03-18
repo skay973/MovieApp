@@ -6,8 +6,9 @@ describe('Service: serviceAjax', function () {
   beforeEach(module('movieAppApp'));
 
   // instantiate service
-  var serviceAjax;
-  var httpBackend;
+  var serviceAjax,
+    httpBackend;
+    
   beforeEach(inject(function (_serviceAjax_, _$httpBackend_) {
     serviceAjax = _serviceAjax_;
     httpBackend = _$httpBackend_;
@@ -17,6 +18,14 @@ describe('Service: serviceAjax', function () {
     serviceAjax.popular(1);
 
     httpBackend.expectGET('http://localhost:3000/popular?page=1').respond({});
+
+    httpBackend.flush();
+  });
+
+  it('should make a request to the right URL when callling search function', function () {
+    serviceAjax.search('test', 1);
+
+    httpBackend.expectGET('http://localhost:3000/search?q=test&page=1').respond({});
 
     httpBackend.flush();
   });

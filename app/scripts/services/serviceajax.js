@@ -13,6 +13,9 @@ angular.module('movieAppApp')
 
     // Public API here
     return {
+      search: function(query, page){
+            return $http.get('http://localhost:3000/search?q=' + query + '&page=' + page);
+      },
       popular: function(page){
         return $http.get('http://localhost:3000/popular?page=' + page);
       }
