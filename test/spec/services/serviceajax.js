@@ -8,11 +8,19 @@ describe('Service: serviceAjax', function () {
   // instantiate service
   var serviceAjax,
     httpBackend;
-    
+
   beforeEach(inject(function (_serviceAjax_, _$httpBackend_) {
     serviceAjax = _serviceAjax_;
     httpBackend = _$httpBackend_;
   }));
+
+  it('should make a request to the right URL when callling info function', function () {
+    serviceAjax.info(2254321);
+
+    httpBackend.expectGET('http://localhost:3000/info/2254321').respond({});
+
+    httpBackend.flush();
+  });
 
   it('should make a request to the right URL when callling popular function', function () {
     serviceAjax.popular(1);
