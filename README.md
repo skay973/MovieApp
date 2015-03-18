@@ -1,7 +1,20 @@
 # movie-app
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.11.1.
+Learning project for a first exposure to NodeJS and related tools : Grunt, Bower, Karma, Express and MongoDB + AngularJS.
+
+This app use a node module to communicate with an api called "moviedb".
+
+##TO DO
+
+- Design : Integrate new bootstrap based design
+- Feature : extended filters
+- Feature : extended search engine
+- Feature : user account
+- Feature : secured signup / login / logout
+- Feature : user can mark movies as watched / not watched
+- Feature : user dashboard
+- Feature : Facebook API
+- And so on...
 
 ## Build & development
 
