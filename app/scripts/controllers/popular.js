@@ -12,18 +12,19 @@ angular.module('movieAppApp')
     $scope.currentPage = 1;
     $scope.totalPages = 0;
 
-    var loadMovies = function(){
+    $scope.loadMovies = function(){
         $scope.loading = true;
         serviceAjax.popular($scope.currentPage).success(function(data){
             $scope.movies = data.results;
+            /*jshint camelcase: false */
             $scope.totalPages = data.total_pages;
             $scope.loading = false;
         });
     };
 
     $scope.pageChanged = function(){
-        loadMovies();
+        $scope.loadMovies();
     };
-    
-    loadMovies();
+
+    $scope.loadMovies();
   });

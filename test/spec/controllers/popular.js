@@ -6,17 +6,38 @@ describe('Controller: PopularCtrl', function () {
   beforeEach(module('movieAppApp'));
 
   var PopularCtrl,
-    scope;
+    scope, serviceAjax;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
+  beforeEach(inject(function ($controller, $rootScope, _serviceAjax_) {
     scope = $rootScope.$new();
+    serviceAjax = _serviceAjax_;
+
     PopularCtrl = $controller('PopularCtrl', {
-      $scope: scope
+      $scope: scope,
+      serviceAjax: serviceAjax
     });
   }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    //expect(scope.awesomeThings.length).toBe(3);
+  it('should set $scope.movies and $scope.total_pages when calling $scope.loadMovies', function () {
+    spyOn(serviceAjax, 'popular').and.callFake(function() {
+      return {
+        success: function(callback) {
+          callback({'results': [{}], 'total_pages': 10});
+        }
+      };
+    });
+
+    scope.loadMovies();
+    expect(scope.totalPages).toEqual(10);
+    expect(scope.movies).toEqual([{}]);
+  });
+
+  it('should call loadMovies function when calling pageChanged function', function() {
+    spyOn(scope, 'loadMovies');
+
+    scope.pageChanged();
+
+    expect(scope.loadMovies).toHaveBeenCalled();
   });
 });
