@@ -22,10 +22,6 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
       .when('/popular', {
         templateUrl: 'views/movies.html',
         controller: 'PopularCtrl'
