@@ -1,27 +1,74 @@
-<div class="movie_detail" loading="loading">
-    <div class="row">
-        <div class="col-md-4">
-            <img ng-src="http://image.tmdb.org/t/p/w500{{movie.poster_path}}" width="200" height="300"/>
-        </div>
-        <div class="col-md-8">
-            <dl class="dl-horizontal">
-                <dt>Genre</dt>
-                <dd>
-                    <ul>
-                        <li ng-repeat="genre in movie.genres">{{genre.name}}</li>
-                    </ul>
-                </dd>
-                <dt>Synopsis</dt>
-                <dd>{{movie.overview}}</dd>
-                <dt>Origine</dt>
-                <dd>
-                    <ul>
-                        <li ng-repeat="production in movie.production_countries">{{production.name}}</li>
-                    </ul>
-                </dd>
-                <dt>Date</dt>
-                <dd>{{movie.release_date | date: 'yyyy'}}</dd>
-            </dl>
-        </div>
+<!-- Inner page start -->
+
+<div class="inner-page" loading="loading">
+  <!-- Inner page headder -->
+  <div class="inner-page-header">
+    <div class="container">
+      <!-- Header inner -->
+      <div class="header-inner">
+        <!-- Heading -->
+        <h2>Single Blog Page</h2>
+        <!-- Paragraph -->
+        <p><span class="red">&#47;&#47;</span> Sed ut perspiciatis of Lorem Ipsum.</p>
+      </div>
     </div>
+  </div>
+
+  <!-- inner page content start -->
+  <div id="infoMovie" class="inner-page-content inner-blog">
+    <div class="row">
+      <div class="col-md-5">
+        <!-- The new post done by user's all in the post block -->
+        <div class="sblog-post">
+          <!-- Entry is the one post for each user -->
+          <div class="entry">
+            <!-- Heading of the  post -->
+            <h3><a href="blog-single.html"><span class="count br-red"><i class="icon-comments"></i></span> &nbsp;{{movie.title}}</a></h3>
+
+            <!-- Meta for this block -->
+            <div class="meta red">
+              <i class="fa fa-calendar"></i>&nbsp; {{movie.release_date | date: 'yyyy'}} &nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i>&nbsp; <span ng-repeat="production in movie.production_countries">{{production.name}}</span> &nbsp;&nbsp;&nbsp;
+            </div>
+            <!-- Post Images -->
+            <div class="blog-img">
+              <img ng-src="http://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="img-responsive img-thumbnail" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <!-- Blog post End -->
+
+      <!-- Side Bar Start -->
+      <div class="col-md-7">
+        <div class="inner-sidebar">
+          <!-- Sidebar widget -->
+          <div class="side-widget">
+            <!-- widget heading -->
+            <h4>Movie's Type</h4>
+            <div class="widget-content">
+              <!-- labels -->
+              <span class="label label-info" ng-repeat="genre in movie.genres">{{genre.name}}</span>
+            </div>
+          </div>
+          <!-- Sidebar widget -->
+          <div class="side-widget">
+            <!-- widget heading -->
+            <h4>Synopsis</h4>
+            <div class="widget-content">
+              <!-- paragraph -->
+              <p>{{movie.overview}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- side bar end -->
+
+    </div>
+  </div>
+  <!-- inner page content end -->
+
 </div>
+
+<!-- Inner page end -->

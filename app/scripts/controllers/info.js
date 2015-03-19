@@ -8,7 +8,7 @@
  * Controller of the movieAppApp
  */
 angular.module('movieAppApp')
-  .controller('InfoCtrl', function ($scope, $routeParams, serviceAjax) {
+  .controller('InfoCtrl', function ($scope, $routeParams, $location, $anchorScroll, serviceAjax) {
     var id = $routeParams.id;
 
     $scope.infoMovie = function () {

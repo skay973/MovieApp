@@ -6,7 +6,8 @@ This app use a node module to communicate with an api called "moviedb".
 
 ##TO DO
 
-- Design : Integrate new bootstrap based design
+- Design : integrate new bootstrap based design
+- Design : create directive for themepunch slider
 - Feature : extended filters
 - Feature : extended search engine
 - Feature : user account

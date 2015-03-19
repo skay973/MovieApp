@@ -18,6 +18,9 @@ angular.module('movieAppApp')
       totalPages: 0
     };
 
+    $scope.pageTitle = 'Popular movies';
+    $scope.pageSubtitle = 'Explore our movie database and find your next movie to watch !';
+
     $scope.orderByPredicate = 'title';
     $scope.orderByReverse = false;
 
