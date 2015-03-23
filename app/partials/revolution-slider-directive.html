@@ -1,0 +1,28 @@
+<!-- Revolution Slider Start -->
+<!-- slider container -->
+<div class="banner-container">
+  <!-- slider -->
+  <div class="banner">
+    <!-- slider content -->
+    <ul>
+      <li ng-repeat="slide in revolutionSliderInfo" data-transition="{{slide.dataTransition}}" data-slotamount="{{slide.dataSlotAmount}}" data-masterspeed="{{slide.dataMasterSpeed}}" >
+        <!-- MAIN IMAGE -->
+        <img ng-src="{{slide.dataImgSrc}}" alt="slidebg1" data-bgfit="{{slide.dataBgFit}}" data-bgposition="{{slide.dataBgPosition}}" data-bgrepeat="{{slide.dataBgRepeat}}">
+        <!-- Inside LAYERS // heading -->
+        <div ng-repeat="layer in slide.layers" ng-bind-html="layer.content" class="{{layer.class}}"
+          data-x="{{layer.dataX}}"
+          data-hoffset="{{layer.dataHOffset}}"
+          data-y="{{layer.dataY}}"
+          data-voffset="{{layer.dataVOffset}}"
+          data-speed="{{layer.dataSpeed}}"
+          data-start="{{layer.dataStart}}"
+          data-easing="{{layer.easing}}"
+          data-endspeed="{{layer.dataEndSpeed}}"
+          data-endeasing="{{layer.dataEndEasing}}"
+          data-captionhidden="{{layer.dataCaptionHidden}}">
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- Revolution Slider End -->

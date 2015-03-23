@@ -35,11 +35,14 @@ module.exports = function(config) {
       // endbower
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
-      'test/spec/**/*.js'
+      'test/spec/**/*.js',
+      // files for directives unit testing
+      'app/partials/*.html'
     ],
 
     // list of files / patterns to exclude
     exclude: [
+      'app/scripts/vendor/custom.js'
     ],
 
     // web server port
@@ -60,8 +63,18 @@ module.exports = function(config) {
     // Which plugins to enable
     plugins: [
       'karma-phantomjs-launcher',
-      'karma-jasmine'
+      'karma-jasmine',
+      'karma-ng-html2js-preprocessor'
     ],
+
+    preprocessors: {
+      'app/partials/*.html': ['ng-html2js']
+    },
+
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'app/',
+      //moduleName: 'movieAppApp'
+    },
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
