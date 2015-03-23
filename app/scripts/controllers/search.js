@@ -18,10 +18,7 @@ angular.module('movieAppApp')
       currentPage: 1,
       totalPages: 0
     };
-
-    $scope.pageTitle = 'Search movies';
-    $scope.pageSubtitle = 'Search results for "' + $scope.query + '"';
-
+    
     $scope.orderByPredicate = 'title';
     $scope.orderByReverse = false;
 
@@ -31,6 +28,7 @@ angular.module('movieAppApp')
         $scope.movies = data.results;
         /*jshint camelcase: false */
         $scope.pagination.totalPages = data.total_pages;
+        /*jshint camelcase: true */
         $scope.loading = false;
       });
     };

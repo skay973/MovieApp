@@ -19,7 +19,7 @@ describe('Controller: PopularCtrl', function () {
     });
   }));
 
-  it('should set $scope.movies and $scope.total_pages when calling $scope.loadMovies', function () {
+  it('should set $scope.movies and $scope.pagination.total_pages when calling $scope.loadMovies', function () {
     spyOn(serviceAjax, 'popular').and.callFake(function() {
       return {
         success: function(callback) {
@@ -29,7 +29,7 @@ describe('Controller: PopularCtrl', function () {
     });
 
     scope.loadMovies();
-    expect(scope.totalPages).toEqual(10);
+    expect(scope.pagination.totalPages).toEqual(10);
     expect(scope.movies).toEqual([{}]);
   });
 

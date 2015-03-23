@@ -18,7 +18,7 @@ describe('Controller: SearchCtrl', function () {
     });
   }));
 
-  it('should set $scope.movies and $scope.total_pages when calling $scope.loadMovies', function () {
+  it('should set $scope.movies and $scope.pagination.total_pages when calling $scope.loadMovies', function () {
     spyOn(serviceAjax, 'search').and.callFake(function () {
         return{
             success: function (callback) {
@@ -29,7 +29,7 @@ describe('Controller: SearchCtrl', function () {
 
     scope.loadMovies();
 
-    expect(scope.totalPages).toEqual(10);
+    expect(scope.pagination.totalPages).toEqual(10);
     expect(scope.movies).toEqual([{}]);
   });
 

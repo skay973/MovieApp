@@ -18,11 +18,12 @@ angular.module('movieAppApp')
       totalPages: 0
     };
 
-    $scope.pageTitle = 'Popular movies';
-    $scope.pageSubtitle = 'Explore our movie database and find your next movie to watch !';
-
+    /* init page filer */
     $scope.orderByPredicate = 'title';
     $scope.orderByReverse = false;
+
+    /* load slider from service, for now, it's a simple javascript array json */
+    $scope.revolutionSlider = serviceAjax.slider();
 
     $scope.loadMovies = function(){
       $scope.loading = true;
@@ -31,6 +32,7 @@ angular.module('movieAppApp')
         $scope.movies = data.results;
         /*jshint camelcase: false */
         $scope.pagination.totalPages = data.total_pages;
+        /*jshint camelcase: true */
         $scope.loading = false;
       });
     };
