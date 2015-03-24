@@ -18,7 +18,9 @@ describe('Controller: SearchCtrl', function () {
     });
   }));
 
-  it('should set $scope.movies and $scope.pagination.total_pages when calling $scope.loadMovies', function () {
+  it('should set $scope.datas and $scope.pagination.total_pages when calling $scope.loadDatas with \'movies\' query parameter', function () {
+    scope.query.type = 'movies';
+
     spyOn(serviceAjax, 'search').and.callFake(function () {
         return{
             success: function (callback) {
@@ -27,18 +29,35 @@ describe('Controller: SearchCtrl', function () {
         };
     });
 
-    scope.loadMovies();
+    scope.loadDatas();
 
     expect(scope.pagination.totalPages).toEqual(10);
-    expect(scope.movies).toEqual([{}]);
+    expect(scope.datas).toEqual([{}]);
   });
 
-  it('should call loadMovies function when calling pageChanged function', function () {
-    spyOn(scope, 'loadMovies');
+  it('should set $scope.datas and $scope.pagination.total_pages when calling $scope.loadDatas with \'tvs\' query parameter', function () {
+    scope.query.type = 'tvs';
+
+    spyOn(serviceAjax, 'search').and.callFake(function () {
+        return{
+            success: function (callback) {
+                callback({'results': [{}], 'total_pages': 10});
+            }
+        };
+    });
+
+    scope.loadDatas();
+
+    expect(scope.pagination.totalPages).toEqual(10);
+    expect(scope.datas).toEqual([{}]);
+  });
+
+  it('should call loadDatas function when calling pageChanged function', function () {
+    spyOn(scope, 'loadDatas');
 
     scope.pageChanged();
 
-    expect(scope.loadMovies).toHaveBeenCalled();
+    expect(scope.loadDatas).toHaveBeenCalled();
   });
 
   it('should set $scope.orderByReverse and $scope.orderByPredicate when calling $scope.clickPredicateName function', function () {

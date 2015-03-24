@@ -15,23 +15,23 @@
   </div>
 
   <!-- inner page content start -->
-  <div id="infoMovie" class="inner-page-content inner-blog">
-    <div class="row">
+  <div id="infoMovie" class="inner-page-content inner-blog" ng-switch="query.type">
+    <div class="row" ng-switch-when="movies">
       <div class="col-md-5">
         <!-- The new post done by user's all in the post block -->
         <div class="sblog-post">
           <!-- Entry is the one post for each user -->
           <div class="entry">
             <!-- Heading of the  post -->
-            <h3><a href="blog-single.html"><span class="count br-red"><i class="icon-comments"></i></span> &nbsp;{{movie.title}}</a></h3>
+            <h3><a href="blog-single.html"><span class="count br-red"><i class="icon-comments"></i></span> &nbsp;{{data.title}}</a></h3>
 
             <!-- Meta for this block -->
             <div class="meta red">
-              <i class="fa fa-calendar"></i>&nbsp; {{movie.release_date | date: 'yyyy'}} &nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i>&nbsp; <span ng-repeat="production in movie.production_countries">{{production.name}}</span> &nbsp;&nbsp;&nbsp;
+              <i class="fa fa-calendar"></i>&nbsp; {{data.release_date | date: 'yyyy'}} &nbsp;&nbsp;&nbsp;<i class="fa fa-globe"></i>&nbsp; <span ng-repeat="production in data.production_countries">{{production.name}}</span> &nbsp;&nbsp;&nbsp;
             </div>
             <!-- Post Images -->
             <div class="blog-img">
-              <img ng-src="http://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="img-responsive img-thumbnail" alt="" />
+              <img ng-src="http://image.tmdb.org/t/p/w500{{data.poster_path}}" class="img-responsive img-thumbnail" alt="" />
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
             <h4>Movie's Type</h4>
             <div class="widget-content">
               <!-- labels -->
-              <span class="label label-info" ng-repeat="genre in movie.genres">{{genre.name}}</span>
+              <span class="label label-info" ng-repeat="genre in data.genres">{{genre.name}}</span>
             </div>
           </div>
           <!-- Sidebar widget -->
@@ -57,7 +57,7 @@
             <h4>Synopsis</h4>
             <div class="widget-content">
               <!-- paragraph -->
-              <p>{{movie.overview}}</p>
+              <p>{{data.overview}}</p>
             </div>
           </div>
         </div>
@@ -66,6 +66,95 @@
       <!-- side bar end -->
 
     </div>
+    <div class="row" ng-switch-when="tvs">
+      <div class="col-md-5">
+        <!-- The new post done by user's all in the post block -->
+        <div class="sblog-post">
+          <!-- Entry is the one post for each user -->
+          <div class="entry">
+            <!-- Heading of the  post -->
+            <h3><a href="blog-single.html"><span class="count br-red"><i class="icon-comments"></i></span> &nbsp;{{data.title}}</a></h3>
+
+            <!-- Meta for this block -->
+            <div class="meta red">
+              <i class="fa fa-calendar"></i>&nbsp; {{data.first_air_date | date: 'yyyy'}} &nbsp;&nbsp;&nbsp;<i class="fa fa-globe"></i>&nbsp; <span ng-repeat="origin in data.origin_country">{{origin}}</span> &nbsp;&nbsp;&nbsp;
+            </div>
+            <!-- Post Images -->
+            <div class="blog-img">
+              <img ng-src="http://image.tmdb.org/t/p/w500{{data.poster_path}}" class="img-responsive img-thumbnail" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <!-- Blog post End -->
+
+      <!-- Side Bar Start -->
+      <div class="col-md-7">
+        <div class="inner-sidebar">
+          <!-- Sidebar widget -->
+          <div class="side-widget">
+            <!-- widget heading -->
+            <h4>TV show's Type</h4>
+            <div class="widget-content">
+              <!-- labels -->
+              <span class="label label-info" ng-repeat="genre in data.genres">{{genre.name}}</span>
+            </div>
+          </div>
+          <!-- Sidebar widget -->
+          <div class="side-widget">
+            <!-- widget heading -->
+            <h4>Synopsis</h4>
+            <div class="widget-content">
+              <!-- paragraph -->
+              <p>{{data.overview}}</p>
+            </div>
+          </div>
+          <div class="side-widget">
+            <!-- widget heading -->
+            <h4>Seasons</h4>
+            <div class="widget-content">
+              <!-- paragraph -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>
+                      Season number
+                    </th>
+                    <th>
+                      Episode count
+                    </th>
+                    <th>
+                      Air date
+                    </th>
+                    <th>
+                      Poster
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr ng-repeat="season in data.seasons" ng-hide="$index == 0">
+                    <td>
+                      {{season.season_number}}
+                    </td>
+                    <td>
+                      {{season.episode_count}}
+                    </td>
+                    <td>
+                      {{season.air_date}}
+                    </td>
+                    <td>
+                      <img ng-src="http://image.tmdb.org/t/p/w500{{season.poster_path}}" class="img-responsive img-thumbnail" alt="" />
+                    </td>
+                  </tr>
+                </tbody>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- side bar end -->
+    </di>
   </div>
   <!-- inner page content end -->
 

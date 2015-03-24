@@ -9,16 +9,21 @@
  */
 angular.module('movieAppApp')
   .controller('InfoCtrl', function ($scope, $routeParams, $location, $anchorScroll, serviceAjax) {
-    var id = $routeParams.id;
+    $scope.query = {
+      id: $routeParams.id,
+      type: $routeParams.type
+    };
 
-    $scope.infoMovie = function () {
+    $scope.info = function () {
       $scope.loading = true;
-      serviceAjax.info(id).success(function(data) {
-        $scope.movie = data;
+
+      serviceAjax.info($scope.query.type, $scope.query.id).success(function(data) {
+        console.log(data);
+        $scope.data = data;
         $scope.loading = false;
       });
     };
 
-    $scope.infoMovie();
+    $scope.info();
 
   });

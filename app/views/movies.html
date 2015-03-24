@@ -15,25 +15,25 @@
         </div>
         <div class="team-member">
           <div class="row">
-            <div class="col-md-4" id="movies" ng-repeat="movie in movies | orderBy: orderByPredicate : orderByReverse">
+            <div class="col-md-4" id="movies" ng-repeat="data in datas | orderBy: orderByPredicate : orderByReverse">
               <!-- team member info -->
               <div class="member-info">
-                <img ng-src="http://image.tmdb.org/t/p/w500{{movie.poster_path}}" class="img-responsive" alt="" />
+                <img ng-src="http://image.tmdb.org/t/p/w500{{data.poster_path}}" class="img-responsive" alt="" />
                 <!-- Member details member-caption -->
                 <div class="member-caption">
                   <!-- Heading "Name" -->
-                  <h3><a ng-href="#/info/{{movie.id}}">{{movie.title}}</a></h3>
-                  <div class="row">
+                  <h3><a ng-href="#/{{query.type}}/info/{{data.id}}">{{data.title ? data.title : data.name}}</a></h3>
+                  <div class="row" ng-show="data.release_date">
                       <label class="col-md-2">Année:</label>
-                      <span class="col-md-8" ng-bind="movie.release_date | date:'yyyy'"></span>
+                      <span class="col-md-8" ng-bind="data.release_date | date:'yyyy'"></span>
                   </div>
                   <!-- Social Icons -->
                   <div class="social">
                     <div class="row">
                       <label class="col-md-2">Note:</label>
                       <div class="col-md-10">
-                        <rating ng-model="movie.vote_average" max="10" readonly="true"></rating><br/>
-                        (<span ng-bind="movie.vote_count"></span>&nbspavis)
+                        <rating ng-model="data.vote_average" max="10" readonly="true"></rating><br/>
+                        (<span ng-bind="data.vote_count"></span>&nbspavis)
                       </div>
                     </div>
                   </div>

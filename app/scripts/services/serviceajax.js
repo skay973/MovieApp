@@ -163,16 +163,14 @@ angular.module('movieAppApp')
     ];
     // Public API here
     return {
-      info: function(id){
-        return $http.get('http://localhost:3000/info/' + id);
+      info: function(type, id){
+        return $http.get('http://localhost:3000/'+type+'/info/' + id);
       },
-      search: function(query, page){
-        return $http.get('http://localhost:3000/search?q=' + query + '&page=' + page);
+      search: function(type, query, page){
+        return $http.get('http://localhost:3000/'+type+'/search?q=' + query + '&page=' + page);
       },
-      popular: function(page){
-        var res = $http.get('http://localhost:3000/popular?page=' + page);
-        console.log(res);
-        return res;
+      popular: function(type, page){
+        return $http.get('http://localhost:3000/'+type+'/popular?page=' + page);
       },
       slider: function(){
         return slides;

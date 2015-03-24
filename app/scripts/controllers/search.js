@@ -9,7 +9,10 @@
  */
 angular.module('movieAppApp')
   .controller('SearchCtrl', function ($scope, $routeParams, serviceAjax) {
-    $scope.query = $routeParams.query;
+    $scope.query =  {
+      type: $routeParams.type,
+      searchStr: $routeParams.query
+    };
 
     /* strange behavior, the custom directive loading was conflicting with
     the variables used by ui.bootstrap pagination's directive.
@@ -18,14 +21,15 @@ angular.module('movieAppApp')
       currentPage: 1,
       totalPages: 0
     };
-    
+
     $scope.orderByPredicate = 'title';
     $scope.orderByReverse = false;
 
-    $scope.loadMovies = function(){
+    $scope.loadDatas = function(){
       $scope.loading = true;
-      serviceAjax.search($scope.query, $scope.pagination.currentPage).success(function(data){
-        $scope.movies = data.results;
+
+      serviceAjax.search($scope.query.type, $scope.query.searchStr, $scope.pagination.currentPage).success(function(data){
+        $scope.datas = data.results;
         /*jshint camelcase: false */
         $scope.pagination.totalPages = data.total_pages;
         /*jshint camelcase: true */
@@ -33,8 +37,9 @@ angular.module('movieAppApp')
       });
     };
 
+
     $scope.pageChanged = function(){
-      $scope.loadMovies();
+      $scope.loadDatas();
     };
 
     $scope.clickPredicateName = function(){
@@ -47,5 +52,5 @@ angular.module('movieAppApp')
       $scope.orderByPredicate = 'vote_average';
     };
 
-    $scope.loadMovies();
+    $scope.loadDatas();
  });

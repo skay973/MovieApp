@@ -18,7 +18,9 @@ describe('Controller: InfoCtrl', function () {
     });
   }));
 
-  it('should set $scope.movie when calling $scope.infoMovie', function () {
+  it('should set $scope.data when calling $scope.info with \'movies\' query parameter', function () {
+    scope.query.type = 'movies';
+
     spyOn(serviceAjax, 'info').and.callFake(function () {
       return {
         success: function (callback) {
@@ -27,9 +29,25 @@ describe('Controller: InfoCtrl', function () {
       };
     });
 
-    scope.infoMovie();
+    scope.info();
 
-    expect(scope.movie).toEqual({'title' : 'test'});
+    expect(scope.data).toEqual({'title' : 'test'});
+  });
+
+  it('should set $scope.movie when calling $scope.movieInfo with \'tvs\' query parameter', function () {
+    scope.query.type = 'tvs';
+
+    spyOn(serviceAjax, 'info').and.callFake(function () {
+      return {
+        success: function (callback) {
+          callback({'title' : 'test'});
+        }
+      };
+    });
+
+    scope.info();
+
+    expect(scope.data).toEqual({'title' : 'test'});
   });
 
 

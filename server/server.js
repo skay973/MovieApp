@@ -7,34 +7,75 @@ app.all('*', function(req, res, next) {
     next();
 });
 
-app.get('/popular', function(req, res){
+app.get('/:type/popular', function(req, res){
+    var type = req.params.type;
+
     var page = (req.query["page"]) ? req.query["page"] : 1;
     page = (req.query["page"] > 1000) ? 1000 : req.query["page"];
-    mdb.miscPopularMovies({page: page}, function(err, data){
-        data.total_pages = 1000;
-        res.send(data)
-    });
+
+    switch(type) {
+      case 'movies':
+        mdb.miscPopularMovies({page: page}, function(err, data){
+            data.total_pages = 1000;
+            res.send(data)
+        });
+        break;
+      case 'tvs':
+        mdb.miscPopularTvs({page: page}, function(err, data){
+            data.total_pages = 1000;
+            res.send(data)
+        });
+        break;
+      default:
+    }
 });
 
-app.get('/search', function (req, res) {
+app.get('/:type/search', function (req, res) {
+    var type = req.params.type;
+
     var query = req.query["q"];
+
     var page = (req.query["page"]) ? req.query["page"] : 1;
-    mdb.searchMovie({query: query, page: page}, function(err, data){
-        res.send(data)
-    });
-})
+
+    switch(type) {
+      case 'movies':
+        mdb.searchMovie({query: query, page: page}, function(err, data){
+            res.send(data)
+        });
+        break;
+      case 'tvs':
+        mdb.searchTv({query: query, page: page}, function(err, data){
+            res.send(data)
+        });
+        break;
+      default:
+    }
+});
+
+app.get('/:type/info/:id', function (req, res) {
+    var id = req.params.id;
+    var type = req.params.type;
+
+    switch(type) {
+      case 'movies':
+        mdb.movieInfo({id: id}, function(err, data){
+            res.send(data);
+        });
+        break;
+      case 'tvs':
+        mdb.tvInfo({id: id}, function(err, data){
+            res.send(data);
+        });
+        break;
+      default:
+    }
+
+});
 
 app.get("/similar/:id", function(req, res){
    var id = req.params.id;
    var page = (req.query["page"]) ? req.query["page"] : 1;
     mdb.movieSimilar({id: id, page: page}, function(err, data){
-        res.send(data);
-    });
-});
-
-app.get('/info/:id', function (req, res) {
-    var id = req.params.id;
-    mdb.movieInfo({id: id}, function(err, data){
         res.send(data);
     });
 });

@@ -22,19 +22,19 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/popular', {
+      .when('/:type/popular', {
         templateUrl: 'views/movies.html',
         controller: 'PopularCtrl'
       })
-      .when('/search/:query', {
+      .when('/:type/search/:query', {
         templateUrl: 'views/movies.html',
         controller: 'SearchCtrl'
       })
-      .when('/info/:id', {
+      .when('/:type/info/:id', {
         templateUrl: 'views/info.html',
         controller: 'InfoCtrl'
       })
       .otherwise({
-        redirectTo: '/popular'
+        redirectTo: '/tvs/popular'
       });
   });
