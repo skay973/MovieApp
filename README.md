@@ -6,8 +6,9 @@ This app use a node module to communicate with an api called "moviedb".
 
 ##TO DO
 
--~~Design : integrate new bootstrap based design~~
--~~Design : create directive for themepunch slider~~
+- ~~Design : integrate new bootstrap based design~~
+- ~~Design : create directive for themepunch slider~~
+- ~~Feature : add tv shows feature to the app~~
 - Design : improve revolution slider to make a generic angular directive available for community
 - Feature : extended filters
 - Feature : extended search engine
